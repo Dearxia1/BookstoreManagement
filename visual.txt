@@ -1,0 +1,114 @@
+import java.util.Scanner;
+
+public class Menu {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        
+        do {
+            System.out.println("Gestión de productos bibliográficos");
+            System.out.println("1. Gestionar libros");
+            System.out.println("2. Gestionar revistas");
+            System.out.println("3. Salir");
+            System.out.print("Ingrese una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // consumir el salto de línea
+            
+            switch(opcion) {
+                case 1:
+                    gestionarLibros(scanner);
+                    break;
+                case 2:
+                    gestionarRevistas(scanner);
+                    break;
+                case 3:
+                    System.out.println("¡Hasta luego!");
+                    break;
+                default:
+                    System.out.println("Opción inválida. Intente nuevamente.");
+                    break;
+            }
+            
+        } while(opcion != 3);
+        
+        scanner.close();
+    }
+    
+    private static void gestionarLibros(Scanner scanner) {
+        int opcion;
+        
+        do {
+            System.out.println("Gestión de libros");
+            System.out.println("1. Registrar libro");
+            System.out.println("2. Modificar libro");
+            System.out.println("3. Borrar libro");
+            System.out.println("4. Volver al menú principal");
+            System.out.print("Ingrese una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // consumir el salto de línea
+            
+            switch(opcion) {
+                case 1:
+                    registrarLibro(scanner);
+                    break;
+                case 2:
+                    modificarLibro(scanner);
+                    break;
+                case 3:
+                    borrarLibro(scanner);
+                    break;
+                case 4:
+                    System.out.println("Volviendo al menú principal...");
+                    break;
+                default:
+                    System.out.println("Opción inválida. Intente nuevamente.");
+                    break;
+            }
+            
+        } while(opcion != 4);
+    }
+    
+    private static void registrarLibro(Scanner scanner) {
+        // Aquí iría la lógica para registrar un libro
+        System.out.println("Registrando un libro...");
+    }
+    
+    private static void modificarLibro(Scanner scanner) {
+        // Aquí iría la lógica para modificar un libro
+        System.out.println("Modificando un libro...");
+    }
+    
+    private static void borrarLibro(Scanner scanner) {
+        // Aquí iría la lógica para borrar un libro
+        System.out.println("Borrando un libro...");
+    }
+    
+    private static void gestionarRevistas(Scanner scanner) {
+        int opcion;
+        
+        do {
+            System.out.println("Gestión de revistas");
+            System.out.println("1. Registrar revista");
+            System.out.println("2. Modificar revista");
+            System.out.println("3. Borrar revista");
+            System.out.println("4. Volver al menú principal");
+            System.out.print("Ingrese una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // consumir el salto de línea
+            
+            switch(opcion) {
+                case 1:
+                    registrarRevista(scanner);
+                    break;
+                case 2:
+                    modificarRevista(scanner);
+                    break;
+                case 3:
+                    borrarRevista(scanner);
+                    break;
+                case 4:
+                    System.out.println("Volviendo al menú principal...");
+                    break;
+                default:
+                   
