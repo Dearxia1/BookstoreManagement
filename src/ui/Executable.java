@@ -113,6 +113,22 @@ public class Executable {
                                         registerBook();
                                         break;
                                     case 2:
+                                        System.out.println("  1. Modificar nombre del libro ");
+                                        System.out.println("  2. Modificar reseña del libro  ");
+                                        System.out.print("Ingrese una opción: ");
+                                        int option6 = reader.nextInt();
+                                        switch(option6) {
+                                            case 1:
+                                                edit_book_name();
+                                                System.out.println("Nombre modificado exitosamente....");
+                                                break;
+                                            case 2:
+                                                // Lógica para modificar el caracter hexadecimal del libro
+                                                break;
+                                            default:
+                                                System.out.println("Opción inválida. Intente nuevamente.");
+                                                 break;
+                                        }
                                         break;
                                     case 3:
                                         break;
@@ -234,6 +250,21 @@ public class Executable {
         controller.registerBook(name, genre, publicationDate, numPages, id, review, null, url, saleValue, numPages);
 
     }
+
+
+    public void edit_book_name(){
+        
+        System.out.print("\n");
+        reader.nextLine();
+        System.out.print("Digite el identificar del libro a modificar el nombre:");
+        String id = reader.nextLine();
+        System.out.print("Cual es el nuevo nombre?: ");
+        String name = reader.nextLine();
+
+        controller.edit_book_name(id, name);
+
+    }
+
 
 }
 

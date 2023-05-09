@@ -80,4 +80,35 @@ public class Controller {
         
         }
 
+
+        public void edit_book_name(String hexadecimalIdentifier,String name){
+
+            for(int i = 0; i < books.size();i++){
+    
+                if(books.get(i).getHexadecimal_identifier().equals(hexadecimalIdentifier)){
+    
+                    books.get(i).setName(name);
+        
+                } 
+            }
+
+            System.out.println("El nombre se modifico y ahora es: " + name);
+        }
+
+
+        public void edit_book_review(String hexadecimalIdentifier,String review){
+
+            for(int i = 0; i < books.size();i++){
+    
+                if(books.get(i).getHexadecimal_identifier().equals(hexadecimalIdentifier)){
+    
+                    books.get(i).setShort_review(review);
+        
+                } 
+            }
+        }
+
+
+
+
 }

@@ -1,6 +1,6 @@
 package model;
 
-public class Revistas extends Bibliographic_Products{
+public class Magazines extends Bibliographic_Products{
     
     private String alphanumeric_identifier;
     private Category category;
@@ -9,7 +9,7 @@ public class Revistas extends Bibliographic_Products{
     private String frequency_of_issuance;
     private int Active_subscriptions;
 
-    public Revistas(
+    public Magazines(
         
      String name,
      String number_pages,

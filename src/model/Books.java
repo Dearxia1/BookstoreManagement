@@ -33,5 +33,53 @@ public class Books extends Bibliographic_Products {
         this.sold_copies = sold_copies;
     }
 
+    public String getHexadecimal_identifier() {
+        return hexadecimal_identifier;
+    }
+
+    public void setHexadecimal_identifier(String hexadecimal_identifier) {
+        this.hexadecimal_identifier = hexadecimal_identifier;
+    }
+
+    public String getShort_review() {
+        return short_review;
+    }
+
+    public void setShort_review(String short_review) {
+        this.short_review = short_review;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public String getUrl_book_cover() {
+        return url_book_cover;
+    }
+
+    public void setUrl_book_cover(String url_book_cover) {
+        this.url_book_cover = url_book_cover;
+    }
+
+    public Double getSales_value() {
+        return sales_value;
+    }
+
+    public void setSales_value(Double sales_value) {
+        this.sales_value = sales_value;
+    }
+
+    public int getSold_copies() {
+        return sold_copies;
+    }
+
+    public void setSold_copies(int sold_copies) {
+        this.sold_copies = sold_copies;
+    }
+
     
 }
