@@ -39,7 +39,7 @@ public class Executable {
             switch (option) {
                 case 1:
                     System.out.println("+----------------------------------------+");
-                    System.out.println("|          REGISTRAR USUARIOS             |");
+                    System.out.println("|          REGISTRAR USUARIOS            |");
                     System.out.println("+----------------------------------------+");
                     System.out.println("| Elija el tipo de usuario que desea ser:|");
                     System.out.println("| 1. Regular                             |");
@@ -55,12 +55,12 @@ public class Executable {
                     switch(option20){
                         case 1:
                             registerRegular_user();
-                            System.out.println("Usuario registrado con exito...\n\n");
+                            System.out.println("\n Usuario registrado con exito...\n\n");
                             break;
             
                         case 2:
                             registerPremiun_user();
-                            System.out.println("Usuario registrado con exito...\n\n");
+                            System.out.println("\n Usuario registrado con exito...\n\n");
                             break;
             
                         case 3:
@@ -94,13 +94,13 @@ public class Executable {
                         switch(option2){
                             case 1:
                                 System.out.println("===============================");
-                                System.out.println("|        Gestión de libros     |");
+                                System.out.println("|        Gestión de libros    |");
                                 System.out.println("===============================");
                                 System.out.println("|                             |");
                                 System.out.println("|  1. Registrar libro         |");
                                 System.out.println("|  2. Modificar libro         |");
                                 System.out.println("|  3. Borrar libro            |");
-                                System.out.println("|  4. Volver al menú principal |");
+                                System.out.println("|  4. Volver                  |");
                                 System.out.println("|                             |");
                                 System.out.println("===============================");
                                 System.out.print("Ingrese una opción: ");
@@ -115,7 +115,7 @@ public class Executable {
                                     case 2:
                                         System.out.println("  1. Modificar nombre del libro ");
                                         System.out.println("  2. Modificar reseña del libro  ");
-                                        System.out.print("Ingrese una opción: ");
+                                        System.out.print("\n Ingrese una opción: ");
                                         int option6 = reader.nextInt();
                                         switch(option6) {
                                             case 1:
@@ -123,7 +123,7 @@ public class Executable {
                                                 System.out.println("Nombre modificado exitosamente....");
                                                 break;
                                             case 2:
-                                                // Lógica para modificar el caracter hexadecimal del libro
+                                                edit_book_review();
                                                 break;
                                             default:
                                                 System.out.println("Opción inválida. Intente nuevamente.");
@@ -131,6 +131,8 @@ public class Executable {
                                         }
                                         break;
                                     case 3:
+                                          erase_book();
+
                                         break;
                                     case 4:
                                         System.out.println("Volviendo al menú principal...");
@@ -144,13 +146,13 @@ public class Executable {
                                     
                             case 2:
                                 System.out.println("===============================");
-                                System.out.println("|       Gestión de revistas    |");
+                                System.out.println("|       Gestión de revistas   |");
                                 System.out.println("===============================");
                                 System.out.println("|                             |");
                                 System.out.println("|  1. Registrar revista       |");
                                 System.out.println("|  2. Modificar revista       |");
                                 System.out.println("|  3. Borrar revista          |");
-                                System.out.println("|  4. Volver al menú principal |");
+                                System.out.println("|  4. Volver                  |");
                                 System.out.println("|                             |");
                                 System.out.println("===============================");
                                 System.out.print("Ingrese una opción: ");
@@ -160,6 +162,7 @@ public class Executable {
                                 
                                 switch(option4){
                                     case 1:
+                                    consult_book(); 
                                         break;
                                     case 2:
                                         break;
@@ -218,6 +221,7 @@ public class Executable {
     }
 
     public void registerBook(){
+
         System.out.print("Identificador: ");
         String id = reader.nextLine();
         
@@ -264,6 +268,59 @@ public class Executable {
         controller.edit_book_name(id, name);
 
     }
+
+    public void erase_book(){
+    
+    System.out.print("Cual es el identificador del libro que quieres eliminar: ");
+    String id = reader.nextLine();
+    System.out.println("Estas seguro que quieres eliminar " + id + "\n1.Si\n2.No");
+    int option = reader.nextInt();   
+
+        switch(option){
+            
+            case 1:
+            controller.erase_book(id);
+            System.out.println("Libro eliminado exitosamente...");
+            break;
+
+            case 2:
+            break;
+
+            default:
+            System.out.println("Opcion invalida....");
+            break;
+
+
+        }
+    }
+
+    public void edit_book_review(){
+
+        System.out.print("\n");
+        reader.nextLine();
+        System.out.print("Cual es el identificador del libro a modificar la reseña:");
+        String id = reader.nextLine();
+        System.out.println("Cual es la nueva reseña?: ");
+        String review = reader.nextLine();
+
+        controller.edit_book_review(id, review);
+
+    }
+
+    // ONLY FOR DEBUGGIN
+    public void consult_book(){
+
+        System.out.println("Cual es el id del libro a consultar");
+        String id = reader.nextLine();
+        controller.consult_book(id);
+
+    }
+
+
+    
+
+
+
 
 
 }

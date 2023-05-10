@@ -81,5 +81,21 @@ public class Books extends Bibliographic_Products {
         this.sold_copies = sold_copies;
     }
 
+    @Override
+    public String toString() {
+        return "Books{" +
+                "name='" + getName() + '\'' +
+                ", number_pages='" + getNumber_pages() + '\'' +
+                ", publication_date='" + getPublication_date() + '\'' +
+                ", accumulated_pages_read=" + getAccumulated_pages_read() +
+                ", hexadecimal_identifier='" + hexadecimal_identifier + '\'' +
+                ", short_review='" + short_review + '\'' +
+                ", genre=" + genre +
+                ", url_book_cover='" + url_book_cover + '\'' +
+                ", sales_value=" + sales_value +
+                ", sold_copies=" + sold_copies +
+                '}';
+    }
+
     
 }

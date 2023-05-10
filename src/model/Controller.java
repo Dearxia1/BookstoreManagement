@@ -16,6 +16,7 @@ public class Controller {
     }
 
 
+    // REGISTER USERS
     public void registerRegular_user(
 
         String name,
@@ -49,7 +50,7 @@ public class Controller {
             
         }
 
-
+        // REGISTER BOOKS
         public void registerBook(
 
             String name,
@@ -81,6 +82,8 @@ public class Controller {
         }
 
 
+        // MANAGMENT OF BOOKS.
+
         public void edit_book_name(String hexadecimalIdentifier,String name){
 
             for(int i = 0; i < books.size();i++){
@@ -89,12 +92,14 @@ public class Controller {
     
                     books.get(i).setName(name);
         
-                } 
+                }else{
+                    System.out.println("No existe un libro con id " + hexadecimalIdentifier);
+
+                }
             }
 
             System.out.println("El nombre se modifico y ahora es: " + name);
         }
-
 
         public void edit_book_review(String hexadecimalIdentifier,String review){
 
@@ -104,9 +109,43 @@ public class Controller {
     
                     books.get(i).setShort_review(review);
         
-                } 
+                }else{
+                    System.out.println("No existe un libro con id " + hexadecimalIdentifier);
+                }
             }
         }
+
+
+        public void erase_book(String id){
+
+            for(int i = 0; i < books.size(); i++){
+
+                if(books.get(i).getHexadecimal_identifier().equals(id)){
+
+                    books.remove(i);
+
+                }else{
+                    System.out.println("No existe un libro con id " + id);
+                }
+            }
+        }
+
+        public void consult_book(String id){
+
+            for(int i = 0; i < books.size();i++){
+
+                if(books.get(i).getHexadecimal_identifier().equals(id)){
+
+                   System.out.println(books.get(i).toString());
+
+                }else{
+                    System.out.println("No existe un libro con id " + id);
+                }
+            }
+        }
+
+
+        //MANAGMENT OF MAGAZINES
 
 
 
