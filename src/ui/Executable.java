@@ -251,7 +251,8 @@ public class Executable {
         // Imprimir la información recolectada
         System.out.println("Libro registrado con exito....");
 
-        controller.registerBook(name, genre, publicationDate, numPages, id, review, null, url, saleValue, numPages);
+        controller.registerBook(name, Integer.toString(numPages), publicationDate, 0, id, review, null, url, saleValue, 0);
+
 
     }
 
