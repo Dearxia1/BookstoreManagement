@@ -3,6 +3,7 @@ package ui;
 import model.Controller;
 import java.util.Scanner;
 
+
 public class Executable {
     
     private Scanner reader;
@@ -28,7 +29,8 @@ public class Executable {
             System.out.println("|                                                                                                  |");
             System.out.println(String.format("| %-5s %-90s |", "1.", "Registrar usuarios, regulares y premium"));
             System.out.println(String.format("| %-5s %-90s |", "2.", "Gestionar productos bibliográficos: registrar, modificar y borrar libros y revistas."));
-            System.out.println("|                                                                                                  |");
+            System.out.println(String.format("| %-5s %-90s |", "3.", "Generar objetos automaticamente."));
+            System.out.println(String.format("| %-5s %-90s |", "4.", "Permitir a un usuario comprar un libro o suscribirse a una revista."));
             System.out.println("|                                                                                                  |");
             System.out.println("====================================================================================================");
             System.out.print("Digite su opcion: ");
@@ -162,11 +164,28 @@ public class Executable {
                                 
                                 switch(option4){
                                     case 1:
-                                    consult_book(); 
+                                    registerMagazine();
                                         break;
                                     case 2:
+                                    System.out.println("  1. Modificar nombre de la revista ");
+                                    System.out.println("  2. Modificar frecuencia de actualización   ");
+                                    System.out.print("\n Ingrese una opción: ");
+                                    int option7 = reader.nextInt();
+                                    switch(option7) {
+                                        case 1:
+                                            edit_magazine_name();
+                                            System.out.println("Nombre modificado exitosamente....");
+                                            break;
+                                        case 2:
+                                            edit_magazine_frequencyOfIssuance();
+                                            break;
+                                        default:
+                                            System.out.println("Opción inválida. Intente nuevamente.");
+                                             break;
+                                    }
                                         break;
                                     case 3:
+                                            erase_magazine();
                                         break;
                                     case 4:
                                         System.out.println("Volviendo al menú principal...");
@@ -186,8 +205,19 @@ public class Executable {
                     } while(option2 != 3);
                     break;
                 case 3:
-                    exit = true;
+                 AutoGenerateObjetcs();
                     break;
+
+                case 4:
+                SaveBooksOrMagazines();
+                    break;
+
+                case 5:
+
+                    break;
+
+                case 6: 
+                exit = true;
                 default:
                     System.out.println("Opción inválida");
                     break;
@@ -318,11 +348,193 @@ public class Executable {
     }
 
 
+
+
+    
+    public void registerMagazine(){
+
+
+        System.out.print("Nombre de la revista: ");
+        String name = reader.nextLine();
+        
+        System.out.print("Número de páginas: ");
+        int numPages = reader.nextInt();
+        reader.nextLine(); 
+
+        System.out.print("Fecha de publicación (dd/mm/yyyy): ");
+        String publicationDate = reader.nextLine();
+
+        System.out.print("Identificador: ");
+        String id = reader.nextLine();
+        
+        System.out.print("Categoria");
+        String review = reader.nextLine();
+        
+        System.out.print("URL de la portada: ");
+        String url = reader.nextLine();
+        
+        System.out.print("Precio subscripcion (en USD): ");
+        double saleValue = reader.nextDouble();
+        reader.nextLine(); 
+
+        System.out.print("Frecuencia actualizacion (en Meses): ");
+        String frequency_of_issuance = reader.nextLine();
+        reader.nextLine(); 
+        
+        // Imprimir la información recolectada
+        System.out.println("Revista registrada con exito....");
+
+        controller.registerMagazine(name,Integer.toString(numPages),publicationDate,0,id,null,url,saleValue,frequency_of_issuance,0);
+
     
 
+    }
 
 
+    public void edit_magazine_name(){
+        
+        System.out.print("\n");
+        reader.nextLine();
+        System.out.print("Digite el identificar de la revista a modificar el nombre:");
+        String id = reader.nextLine();
+        System.out.print("Cual es el nuevo nombre?: ");
+        String name = reader.nextLine();
+
+        controller.edit_book_name(id, name);
+
+    }
+
+    public void edit_magazine_frequencyOfIssuance(){
+        
+        System.out.print("\n");
+        reader.nextLine();
+        System.out.print("Digite el identificar de la revista a modificar la frecuencia de actualizacion:");
+        String id = reader.nextLine();
+        System.out.print("Cual es la nueva programación (en Meses): ");
+        String frequency = reader.nextLine();
+
+        controller.edit_book_name(id, frequency);
+
+    }
+
+    public void erase_magazine(){
+
+        System.out.print("Cual es el identificador de la revista que quieres eliminar: ");
+        String id = reader.nextLine();
+        System.out.println("Estas seguro que quieres eliminar " + id + "\n1.Si\n2.No");
+        int option = reader.nextInt();   
+    
+            switch(option){
+                
+                case 1:
+                controller.erase_magazine(id);
+                System.out.println("Libro eliminado exitosamente...");
+                break;
+    
+                case 2:
+                break;
+    
+                default:
+                System.out.println("Opcion invalida....");
+                break;
+    
+    
+            }
+
+    }
 
 
+        public void AutoGenerateObjetcs(){
+
+            
+            controller.AutoGenerateObjetcs();
+            System.out.println("Objetos generados exitosamente....");
+
+        }
+
+
+   
+        public void SaveBooksOrMagazines(){
+
+            System.out.print("Ingrese su ID de usuario: ");
+            String usuarioId = reader.nextLine();
+            
+            System.out.println("Es usted \n1.Premiun\n2.Regular");
+
+            int option2 = reader.nextInt();
+            switch(option2){
+
+
+                case 1:
+
+                System.out.println("Desea comprar o suscribirse a \n1. libro\n2. revista\n3. salir ");
+                int option = reader.nextInt();
+                switch(option){
+    
+                    case 1:
+                    reader.nextLine();
+                    System.out.print("Ingrese el ID del libro que desea comprar: ");
+                    String libroId = reader.nextLine();
+                    controller.BuybookP(libroId, usuarioId);
+                    
+    
+                    break;
+    
+                    case 2:
+                    System.out.print("Ingrese el ID de la revista a la que desea suscribirse: ");
+                    String revistaId = reader.nextLine();
+                    controller.SubscribeMagazineP(revistaId, usuarioId);
+                    break;
+    
+                    case 3:
+                    break;
+    
+                    default:
+                    System.out.println("Opcion invalida....");
+                    break;
+    
+                }
+
+
+                break;
+
+                case 2:
+
+                System.out.println("Desea comprar o suscribirse a \n1. libro\n2. revista\n3. salir ");
+                int option5 = reader.nextInt();
+                switch(option5){
+    
+                    case 1:
+                    reader.nextLine();
+                    System.out.print("Ingrese el ID del libro que desea comprar: ");
+                    String BookId = reader.nextLine();
+                    controller.Buybook(BookId, usuarioId);
+                    
+    
+                    break;
+    
+                    case 2:
+                    System.out.print("Ingrese el ID de la revista a la que desea suscribirse: ");
+                    String MagazineId = reader.nextLine();
+                    controller.SubscribeMagazine(usuarioId, MagazineId);
+                    break;
+    
+                    case 3:
+                    break;
+    
+                    default:
+                    System.out.println("Opcion invalida....");
+                    break;
+    
+                }
+
+                break;
+
+                default:
+                System.out.println("Opcion invalida....");
+                break;
+                
+          }
+     }
 }
 

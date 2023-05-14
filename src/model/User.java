@@ -16,4 +16,32 @@ public class User {
         this.id = id;
         this.date_affiliation = date_affiliation;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDate_affiliation() {
+        return date_affiliation;
+    }
+
+    public void setDate_affiliation(String date_affiliation) {
+        this.date_affiliation = date_affiliation;
+    }
+
+
+
+    
 }
