@@ -6,29 +6,17 @@ public class Premiun extends User{
     private String name;
     private String id;
     private String date_affiliation;
-    private ArrayList<Books> my_Books;
-    private ArrayList<Magazines> my_Magazines;
-    
-    public Premiun(
-        
-        String name,
-        String id,
-        String date_affiliation,
-        String name2,
-        String id2,
-        String date_affiliation2
-        ) {
 
+    public Premiun(String name, String id, String date_affiliation, ArrayList<Books> my_Books,
+            ArrayList<Magazines> my_Magazines, String name2, String id2, String date_affiliation2) {
         super(name, id, date_affiliation);
         this.name = name2;
         if (id2 != null) {
             this.id = id2;
         } else {
-            this.id = ""; // Otra alternativa es asignar un valor por defecto en caso de que id2 sea null
+            this.id = ""; 
         }
-        this.date_affiliation = date_affiliation2;
-        this.my_Books = new ArrayList<>();
-        this.my_Magazines = new ArrayList<>();
+        date_affiliation = date_affiliation2;
     }
 
     public String getName() {
@@ -60,21 +48,6 @@ public class Premiun extends User{
         return "Premiun [name=" + name + ", id=" + id + ", date_affiliation=" + date_affiliation + "]";
     }
 
-    public ArrayList<Books> getMy_Books() {
-        return my_Books;
-    }
-
-    public void setMy_Books(ArrayList<Books> my_Books) {
-        this.my_Books = my_Books;
-    }
-
-    public ArrayList<Magazines> getMy_Magazines() {
-        return my_Magazines;
-    }
-
-    public void setMy_Magazines(ArrayList<Magazines> my_Magazines) {
-        this.my_Magazines = my_Magazines;
-    }
     
 
 }

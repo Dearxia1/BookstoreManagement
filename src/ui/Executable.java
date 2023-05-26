@@ -159,7 +159,7 @@ public class Executable {
                                 System.out.println("===============================");
                                 System.out.print("Ingrese una opción: ");
                                 option4 = reader.nextInt();
-                                reader.nextLine(); // consumir el salto de línea
+                                reader.nextLine(); 
                                 System.out.print("\n\n\n");
                                 
                                 switch(option4){
@@ -213,7 +213,7 @@ public class Executable {
                     break;
 
                 case 5:
-
+                consult_userR();
                     break;
 
                 case 6: 
@@ -347,6 +347,24 @@ public class Executable {
 
     }
 
+        // ONLY FOR DEBUGGIN
+        public void consult_userR(){
+
+            System.out.println("Cual es el id del usuario a consultar");
+            String id = reader.nextLine();
+            controller.consult_UserR(id);
+    
+        }
+
+            // ONLY FOR DEBUGGIN
+            public void consult_userP(){
+
+                System.out.println("Cual es el id del usuario a consultar");
+                String id = reader.nextLine();
+                controller.consult_UserP(id);
+        
+            }
+
 
 
 
@@ -381,7 +399,6 @@ public class Executable {
         String frequency_of_issuance = reader.nextLine();
         reader.nextLine(); 
         
-        // Imprimir la información recolectada
         System.out.println("Revista registrada con exito....");
 
         controller.registerMagazine(name,Integer.toString(numPages),publicationDate,0,id,null,url,saleValue,frequency_of_issuance,0);
@@ -459,82 +476,86 @@ public class Executable {
             System.out.print("Ingrese su ID de usuario: ");
             String usuarioId = reader.nextLine();
             
-            System.out.println("Es usted \n1.Premiun\n2.Regular");
-
+            System.out.println("Es usted \n1. Premium\n2. Regular");
             int option2 = reader.nextInt();
-            switch(option2){
-
-
+            switch (option2) {
                 case 1:
-
-                System.out.println("Desea comprar o suscribirse a \n1. libro\n2. revista\n3. salir ");
-                int option = reader.nextInt();
-                switch(option){
-    
-                    case 1:
-                    reader.nextLine();
-                    System.out.print("Ingrese el ID del libro que desea comprar: ");
-                    String libroId = reader.nextLine();
-                    controller.BuybookP(libroId, usuarioId);
-                    
-    
+                    System.out.println("Desea comprar o suscribirse a \n1. libro\n2. revista\n3. salir ");
+                    int option = reader.nextInt();
+                    switch (option) {
+                        case 1:
+                            reader.nextLine();
+                            System.out.print("Ingrese el ID del libro que desea comprar: ");
+                            String libroId = reader.nextLine();
+                            boolean compraExitosa = controller.BuybookP(usuarioId, libroId);
+                            if (compraExitosa) {
+                                System.out.println("La compra del libro se ha registrado correctamente.");
+                            } else {
+                                System.out.println("No se pudo realizar la compra del libro.");
+                            }
+                            break;
+        
+                        case 2:
+                            System.out.print("Ingrese el ID de la revista a la que desea suscribirse: ");
+                            String revistaId = reader.nextLine();
+                            boolean suscripcionExitosa = controller.SubscribeMagazineP(usuarioId, revistaId);
+                            if (suscripcionExitosa) {
+                                System.out.println("La suscripción a la revista se ha registrado correctamente.");
+                            } else {
+                                System.out.println("No se pudo realizar la suscripción a la revista.");
+                            }
+                            break;
+        
+                        case 3:
+                            break;
+        
+                        default:
+                            System.out.println("Opción inválida....");
+                            break;
+                    }
                     break;
-    
-                    case 2:
-                    System.out.print("Ingrese el ID de la revista a la que desea suscribirse: ");
-                    String revistaId = reader.nextLine();
-                    controller.SubscribeMagazineP(revistaId, usuarioId);
-                    break;
-    
-                    case 3:
-                    break;
-    
-                    default:
-                    System.out.println("Opcion invalida....");
-                    break;
-    
-                }
-
-
-                break;
-
+        
                 case 2:
-
-                System.out.println("Desea comprar o suscribirse a \n1. libro\n2. revista\n3. salir ");
-                int option5 = reader.nextInt();
-                switch(option5){
-    
-                    case 1:
-                    reader.nextLine();
-                    System.out.print("Ingrese el ID del libro que desea comprar: ");
-                    String BookId = reader.nextLine();
-                    controller.Buybook(BookId, usuarioId);
-                    
-    
+                    System.out.println("Desea comprar o suscribirse a \n1. libro\n2. revista\n3. salir ");
+                    int option5 = reader.nextInt();
+                    switch (option5) {
+                        case 1:
+                            reader.nextLine();
+                            System.out.print("Ingrese el ID del libro que desea comprar: ");
+                            String bookId = reader.nextLine();
+                            boolean compraExitosa = controller.Buybook(usuarioId, bookId);
+                            if (compraExitosa) {
+                                System.out.println("La compra del libro se ha registrado correctamente.");
+                            } else {
+                                System.out.println("No se pudo realizar la compra del libro.");
+                            }
+                            break;
+        
+                        case 2:
+                            reader.nextLine();
+                            System.out.print("Ingrese el ID de la revista a la que desea suscribirse: ");
+                            String magazineId = reader.nextLine();
+                            boolean suscripcionExitosa = controller.SubscribeMagazine(usuarioId, magazineId);
+                            if (suscripcionExitosa) {
+                                System.out.println("La suscripción a la revista se ha registrado correctamente.");
+                            } else {
+                                System.out.println("No se pudo realizar la suscripción a la revista.");
+                            }
+                            break;
+        
+                        case 3:
+                            break;
+        
+                        default:
+                            System.out.println("Opción inválida....");
+                            break;
+                    }
                     break;
-    
-                    case 2:
-                    System.out.print("Ingrese el ID de la revista a la que desea suscribirse: ");
-                    String MagazineId = reader.nextLine();
-                    controller.SubscribeMagazine(usuarioId, MagazineId);
-                    break;
-    
-                    case 3:
-                    break;
-    
-                    default:
-                    System.out.println("Opcion invalida....");
-                    break;
-    
-                }
-
-                break;
-
+        
                 default:
-                System.out.println("Opcion invalida....");
-                break;
-                
-          }
-     }
+                    System.out.println("Opción inválida....");
+                    break;
+            }
+        }
 }
 

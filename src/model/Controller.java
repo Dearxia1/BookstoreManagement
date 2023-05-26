@@ -30,6 +30,8 @@ public class Controller {
             null,
             null,
             null,
+            null,
+            null,
             null);
 
         RegularUser.add(regular_user);
@@ -45,6 +47,8 @@ public class Controller {
             name,
              id,null,
               null,
+               null,
+               null,
                null,
                null);
 
@@ -247,19 +251,19 @@ public class Controller {
             magazines.add(magazine);
             consult_magazine("Z1T");
 
-            Regular user_regular = new Regular("Daniel Mejia","1107836426", "12/08/2023", "Daniel Mejia", "1107836426", "12/08/2023");
+            Regular user_regular = new Regular("Daniel Mejia","1107836426", "12/08/2023", null, null, "Daniel Mejia","1107836426","1107836426");
             RegularUser.add(user_regular);
             consult_UserR("1107836426");
 
-            Premiun user_Premiun = new Premiun("Alfonso Ruales", "6246387011", "18/12/2023", "Alfonso Ruales", "6246387011", "18/12/2023");
+            Premiun user_Premiun = new Premiun("Alfonso Ruales", "6246387011", "18/12/2023", null, null, "Alfonso Ruales","6246387011","18/12/2023");
             PremiunUser.add(user_Premiun);
             consult_UserP("6246387011");
             
         }
 
-        public Regular searchUserPById(String userId) {
-            for (Regular user : RegularUser) {
-                if (user.getId().equals(userId)) {
+        public Premiun searchUserPById(String userId) {
+            for (Premiun user : PremiunUser) {
+                if (user.getId().equalsIgnoreCase(userId)) {
                     return user;
                 }
             }
@@ -268,7 +272,7 @@ public class Controller {
 
         public Regular searchUserRById(String userId) {
             for (Regular user : RegularUser) {
-                if (user.getId().equals(userId)) {
+                if (user.getId().equalsIgnoreCase(userId)) {
                     return user;
                 }
             }
@@ -277,56 +281,64 @@ public class Controller {
     
         public Books searchBookById(String BookId) {
             for (Books book : books) {
-                if (book.getHexadecimal_identifier().equals(BookId)) {
+                if (book.getHexadecimal_identifier().equalsIgnoreCase(BookId)) {
                     return book;
                 }
             }
-            return null; // Si no se encuentra el libro con el ID dado
+            return null; 
         }
 
         public Magazines searchMagazineById(String revistaId) {
             for (Magazines magazine : magazines) {
-                if (magazine.getAlphanumeric_identifier().equals(revistaId)) {
+                if (magazine.getAlphanumeric_identifier().equalsIgnoreCase(revistaId)) {
                     return magazine;
                 }
             }
-            return null; // Si no se encuentra la revista con el ID dado
+            return null; 
         }
-    
-        public void Buybook(String userId, String BookId) {
+        public boolean Buybook(String userId, String BookId) {
             Regular user = searchUserRById(userId);
             Books book = searchBookById(BookId);
-    
+        
             if (user != null && book != null) {
                 user.comprarLibro(book);
+                return true; 
             }
+            return false; 
         }
+        
     
-        public void SubscribeMagazine(String userId, String magazineId) {
+        public boolean SubscribeMagazine(String userId, String magazineId) {
             Regular user = searchUserRById(userId);
             Magazines book = searchMagazineById(magazineId);
     
             if (user != null && book != null) {
                 user.suscribirseRevista(book);
+                return true;
             }
+            return false; 
         }
 
-        public void BuybookP(String userId, String BookId) {
-            Regular user = searchUserPById(userId);
+        public boolean BuybookP(String userId, String BookId) {
+            Premiun user = searchUserPById(userId);
             Books book = searchBookById(BookId);
     
             if (user != null && book != null) {
                 user.comprarLibro(book);
+                return true;
             }
+            return false; 
         }
     
-        public void SubscribeMagazineP(String userId, String magazineId) {
-            Regular user = searchUserPById(userId);
+        public boolean SubscribeMagazineP(String userId, String magazineId) {
+            Premiun user = searchUserPById(userId);
             Magazines magazine = searchMagazineById(magazineId);
     
             if (user != null && magazine != null) {
                 user.suscribirseRevista(magazine);
+                return true;
             }
+            return false;
         }
     
 
