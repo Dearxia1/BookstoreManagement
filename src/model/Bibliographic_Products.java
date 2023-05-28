@@ -5,7 +5,7 @@ public class Bibliographic_Products{
     private String name;
     private String number_pages;
     private String publication_date;
-    private int accumulated_pages_read;
+    private int accumulated_pages_read = 1;
 
     public Bibliographic_Products(
         

@@ -19,6 +19,10 @@ public class Executable {
         exe.menu();
     }
     
+  /**
+   * This function displays a menu with various options and performs corresponding actions based on the
+   * user's input.
+   */
     public void menu() {
         boolean exit = false;
         while (!exit) {
@@ -31,12 +35,15 @@ public class Executable {
             System.out.println(String.format("| %-5s %-90s |", "2.", "Gestionar productos bibliográficos: registrar, modificar y borrar libros y revistas."));
             System.out.println(String.format("| %-5s %-90s |", "3.", "Generar objetos automaticamente."));
             System.out.println(String.format("| %-5s %-90s |", "4.", "Permitir a un usuario comprar un libro o suscribirse a una revista."));
+            System.out.println(String.format("| %-5s %-90s |", "5.", "Mostrar biblioteca" ));
+            System.out.println(String.format("| %-5s %-90s |", "6.", "Sesion de lectura" ));
+            System.out.println(String.format("| %-5s %-90s |", "7.", "informes" ));
             System.out.println("|                                                                                                  |");
             System.out.println("====================================================================================================");
             System.out.print("Digite su opcion: ");
             
             int option = reader.nextInt();
-            reader.nextLine(); // Leer el salto de línea después del número
+            reader.nextLine();
             System.out.print("\n\n\n");
             switch (option) {
                 case 1:
@@ -89,7 +96,7 @@ public class Executable {
                         System.out.println("====================================");
                         System.out.print("Ingrese una opción: ");
                         option2 = reader.nextInt();
-                        reader.nextLine(); // consumir el salto de línea
+                        reader.nextLine(); 
                         System.out.print("\n\n\n");
                         int option3 = 0;
                         int option4 = 0;
@@ -107,7 +114,7 @@ public class Executable {
                                 System.out.println("===============================");
                                 System.out.print("Ingrese una opción: ");
                                 option3 = reader.nextInt();
-                                reader.nextLine(); // consumir el salto de línea
+                                reader.nextLine();
                                 System.out.print("\n\n\n");
                     
                                 switch(option3){
@@ -213,14 +220,23 @@ public class Executable {
                     break;
 
                 case 5:
-                consult_userR();
+                showMatriz();
                     break;
 
                 case 6: 
+                    lecture();
+                break;
+
+                case 7: 
+                generarInformes();
+                 break;
+                    
+
+                case 8: 
                 exit = true;
                 default:
                     System.out.println("Opción inválida");
-                    break;
+                 
             }
         }
     
@@ -228,6 +244,10 @@ public class Executable {
     }
 
 
+  /**
+   * This function registers a regular user by taking their name and ID as input and passing it to the
+   * controller.
+   */
     public void registerRegular_user(){
 
         System.out.print("  Digite su numero de cedula: ");
@@ -238,6 +258,10 @@ public class Executable {
         controller.registerRegular_user(name, id);
 
     }
+/**
+ * This function prompts the user to input their ID and name, and then registers them as a premium user
+ * using a controller.
+ */
 
     public void registerPremiun_user(){
 
@@ -249,6 +273,10 @@ public class Executable {
         controller.registerPremiun_user(name, id);
 
     }
+/**
+ * This function registers a book by collecting information from the user and passing it to a
+ * controller to be stored.
+ */
 
     public void registerBook(){
 
@@ -278,7 +306,7 @@ public class Executable {
         double saleValue = reader.nextDouble();
         reader.nextLine(); 
         
-        // Imprimir la información recolectada
+      
         System.out.println("Libro registrado con exito....");
 
         controller.registerBook(name, Integer.toString(numPages), publicationDate, 0, id, review, null, url, saleValue, 0);
@@ -286,6 +314,10 @@ public class Executable {
 
     }
 
+/**
+ * This function prompts the user to enter the ID of a book and a new name for it, and then calls a
+ * controller method to edit the book's name.
+ */
 
     public void edit_book_name(){
         
@@ -300,6 +332,10 @@ public class Executable {
 
     }
 
+/**
+ * This Java function prompts the user to enter the identifier of a book they want to delete, confirms
+ * the deletion with the user, and then calls a controller function to delete the book.
+ */
     public void erase_book(){
     
     System.out.print("Cual es el identificador del libro que quieres eliminar: ");
@@ -325,6 +361,10 @@ public class Executable {
         }
     }
 
+    /**
+     * This Java function prompts the user to input a book identifier and a new review, and then calls
+     * a controller function to edit the book review.
+     */
     public void edit_book_review(){
 
         System.out.print("\n");
@@ -339,6 +379,10 @@ public class Executable {
     }
 
     // ONLY FOR DEBUGGIN
+   /**
+    * This Java function prompts the user to input the ID of a book to be consulted and then calls a
+    * controller method to perform the consultation.
+    */
     public void consult_book(){
 
         System.out.println("Cual es el id del libro a consultar");
@@ -348,6 +392,10 @@ public class Executable {
     }
 
         // ONLY FOR DEBUGGIN
+/**
+ * This Java function prompts the user to input an ID and then calls a controller function to consult a
+ * user with that ID.
+ */
         public void consult_userR(){
 
             System.out.println("Cual es el id del usuario a consultar");
@@ -357,6 +405,10 @@ public class Executable {
         }
 
             // ONLY FOR DEBUGGIN
+         /**
+          * This Java function prompts the user to input an ID and then calls a controller function to
+          * consult a user with that ID.
+          */
             public void consult_userP(){
 
                 System.out.println("Cual es el id del usuario a consultar");
@@ -369,8 +421,11 @@ public class Executable {
 
 
     
+    /**
+     * This function registers a magazine by taking input from the user and passing it to a controller
+     * method.
+     */
     public void registerMagazine(){
-
 
         System.out.print("Nombre de la revista: ");
         String name = reader.nextLine();
@@ -387,7 +442,7 @@ public class Executable {
         
         System.out.print("Categoria");
         String review = reader.nextLine();
-        
+
         System.out.print("URL de la portada: ");
         String url = reader.nextLine();
         
@@ -408,6 +463,10 @@ public class Executable {
     }
 
 
+   /**
+    * This Java function prompts the user to enter the identifier of a magazine and a new name, and
+    * then calls a controller function to edit the magazine's name.
+    */
     public void edit_magazine_name(){
         
         System.out.print("\n");
@@ -421,6 +480,11 @@ public class Executable {
 
     }
 
+   /**
+    * This Java function prompts the user to input the ID of a magazine and a new frequency of
+    * issuance, and then calls a controller function to edit the magazine's name with the given ID and
+    * frequency.
+    */
     public void edit_magazine_frequencyOfIssuance(){
         
         System.out.print("\n");
@@ -434,6 +498,10 @@ public class Executable {
 
     }
 
+  /**
+   * This Java function prompts the user to enter the identifier of a magazine they want to delete,
+   * confirms the deletion with the user, and then calls a controller function to delete the magazine.
+   */
     public void erase_magazine(){
 
         System.out.print("Cual es el identificador de la revista que quieres eliminar: ");
@@ -445,7 +513,7 @@ public class Executable {
                 
                 case 1:
                 controller.erase_magazine(id);
-                System.out.println("Libro eliminado exitosamente...");
+                System.out.println("revista eliminado exitosamente...");
                 break;
     
                 case 2:
@@ -461,6 +529,9 @@ public class Executable {
     }
 
 
+      /**
+       * This function calls a method to automatically generate objects and prints a success message.
+       */
         public void AutoGenerateObjetcs(){
 
             
@@ -471,6 +542,10 @@ public class Executable {
 
 
    
+      /**
+       * This function prompts the user for their ID and subscription status, and allows them to buy
+       * books or subscribe to magazines based on their status.
+       */
         public void SaveBooksOrMagazines(){
 
             System.out.print("Ingrese su ID de usuario: ");
@@ -551,11 +626,131 @@ public class Executable {
                             break;
                     }
                     break;
+    
+
+                default:
+                    System.out.println("Opción inválida....");
+                    break;
+            }
+        }
+
+      /**
+       * This function displays a matrix of bibliographic products and prompts the user to select a
+       * product for reading, based on their user ID and account type.
+       */
+        public void showMatriz(){
+           
+            int countR = 0;
+            int countP = 0;
+            System.out.print("Ingrese su ID de usuario: ");
+            String usuarioId = reader.nextLine();
+            
+            System.out.println("Es usted \n1. Premium\n2. Regular");
+            int option2 = reader.nextInt();
+            System.out.println("\n\n");
+            
+            switch (option2) {
+                case 1:
+                countP++;
+                System.out.println("        Biblioteca de " + controller.consult_namerR(usuarioId) );
+                controller.showMatriz(usuarioId,countP);
+                System.out.println("\nDigite la coordenada x,y o el codigo correspondiente\ndel producto bibliografico para iniciar un sesion de lectura\nDigite A para ir a la anterior pagina\nDigite S para ir a la siguiente pagina\nDigite E para salir)");
+            
+                    break;
+        
+                case 2:
+                countR++;
+                System.out.println("        Biblioteca de " + controller.consult_namerR(usuarioId) );
+                controller.showMatriz(usuarioId,countR);
+                System.out.println("\nDigite la coordenada x,y o el codigo correspondiente\ndel producto bibliografico para iniciar un sesion de lectura\nDigite A para ir a la anterior pagina\nDigite S para ir a la siguiente pagina\nDigite E para salir)");
+  
+                    break;
         
                 default:
                     System.out.println("Opción inválida....");
                     break;
             }
         }
+
+      /**
+       * This function allows a user to read a bibliographic product by inputting their user ID and the
+       * product code, and then navigating through the pages using the options "A" to go back a page,
+       * "S" to go forward a page, and "E" to exit.
+       */
+        public void lecture() {
+
+            int init = 0;
+            
+            System.out.print("Ingrese su ID de usuario: ");
+            String usuarioId = reader.nextLine();
+    
+            System.out.print("Ingrese el código de su producto bibliográfico para iniciar la lectura: ");
+            String code = reader.nextLine();
+    
+            while (true) {
+                message(init,usuarioId,code);
+    
+                String option = reader.nextLine();
+    
+                switch (option.toUpperCase()) {
+                    case "A":
+                        if (init > 0 && init < Integer.parseInt(controller.consult_numpageR(usuarioId))) {
+                            init--;
+                        }
+                        break;
+    
+                    case "S":
+                        
+                        init++;
+                       
+                        break;
+    
+                    case "E":
+                        return; 
+    
+                    default:
+                        System.out.println("Opción inválida");
+                        break;
+                  }
+                }
+            }
+
+      /**
+       * This function prints out a message for a reading session, including instructions for
+       * navigating pages.
+       * 
+       * @param init an integer representing the current page number being read
+       * @param usuario A string representing the user's name or username.
+       * @param code It is a String parameter that is not used in the method. It seems to be
+       * unnecessary and can be removed.
+       */
+        public void message(int init, String usuario, String code){
+
+
+            System.out.println("Sesion de lectura en proceso: \n");
+            System.out.println("leyendo: " + controller.consult_namepageR(usuario) );
+            System.out.println("leyendo pagina " + init + " de " + Integer.parseInt(controller.consult_numpageR(usuario)) +  " :  \n");
+
+            System.out.println("Digite A para ir a la anterior pagina");
+            System.out.println("Digite S para ir a la siguiente pagina");
+            System.out.println("Digite E para vover al menu inicial ");
+            System.out.print("OPCION: ");
+
+        }
+     /**
+      * This function calls the "generarInformes()" method of the "controller" object.
+      */
+        
+        public void generarInformes(){
+
+            controller.generarInformes();
+
+        }
+
+
+
+
+
+
 }
 
